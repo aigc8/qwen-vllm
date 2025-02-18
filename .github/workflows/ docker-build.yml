@@ -47,7 +47,7 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
-        timeout-minutes: 175
+        timeout-minutes: 1750
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
