@@ -47,12 +47,13 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
-        timeout-minutes: 75
+        timeout-minutes: 175
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          target: vllm-base
           cache-from: |
             type=gha
             type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/vllm:main
@@ -64,3 +65,4 @@ jobs:
             torch_cuda_arch_list=8.0 8.9+PTX
           outputs: type=registry
           provenance: false
+
